@@ -1,3 +1,4 @@
+import random
 def get_range_for_difficulty(difficulty: str):
     """Return (low, high) inclusive range for a given difficulty."""
     if difficulty == "Easy":
@@ -31,15 +32,16 @@ def parse_guess(raw: str):
 
 def check_guess(guess, secret):
     """
-    Compare guess to secret and return (outcome, message).
+    Compare guess to secret and return a clean outcome string.
 
-    outcome examples: "Win", "Too High", "Too Low"
+    Returns: "Win", "Too High", or "Too Low"
     """
     try:
         g = int(guess)
         s = int(secret)
     except (ValueError, TypeError):
-        return "Too Low"
+        return "Too Low", "Invalid input."
+
 
     if g == s:
         return "Win"
